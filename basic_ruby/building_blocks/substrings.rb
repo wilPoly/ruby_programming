@@ -1,19 +1,17 @@
 def substrings (word, dictionary)
 	listing = {}
-	matches = []
-	sub_count = 0
-
-	dictionary.each do |item|
-		#word.scan(item) #return multiple arrays...
-		match_item = Regexp.new(item, Regexp::IGNORECASE)
-		word.match(match_item) { |m| matches << item }
-	end
-
-	p matches
-
-	matches.each do |item|
-		sub_count = matches.count(item)
-		listing.store(item, sub_count)
+	word.downcase!
+	word = word.scan(/\w+/)
+	word.each do |word|
+		dictionary.each do |item|
+			word.match(item) do |m|
+				if listing.has_key? (item)
+					listing[item] += 1
+				else
+					listing[item] = 1
+				end
+			end
+		end
 	end
 
 	puts listing
