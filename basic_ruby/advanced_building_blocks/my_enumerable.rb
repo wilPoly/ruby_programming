@@ -104,4 +104,44 @@ module Enumerable
         result
     end
   end
+
+  def my_map
+    result = []
+    if block_given?
+      self.my_each do |i|
+        value = yield i
+        result << value
+      end
+      result
+    else
+      self.to_enum :my_map
+    end
+  end
+
+  def my_inject (*args)
+    case
+    when args.length > 2
+      raise ArgumentError
+    when args.length >= 1
+      if args.first.is_a? Symbol
+        acc = 0
+        self.my_each {|obj| acc = obj.send args.first, acc}
+        acc
+      elsif args[1].is_a? Symbol
+        acc = args.first
+        self.my_each {|obj| acc = obj.send args[1], acc}
+        acc
+      elsif block_given?
+        acc = args.first
+        self.my_each {|obj| acc = yield(acc, obj)}
+        acc
+      end
+    when args.length == 0
+      if block_given?
+        acc = self.first
+        self.my_each {|obj| acc = yield(acc, obj)}
+        acc
+      end
+    end
+  end
 end
