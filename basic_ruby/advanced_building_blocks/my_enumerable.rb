@@ -105,17 +105,29 @@ module Enumerable
     end
   end
 
-  def my_map
+  # my_map without proc
+
+  # def my_map
+  #   result = []
+  #   if block_given?
+  #     self.my_each do |i|
+  #       value = yield i
+  #       result << value
+  #     end
+  #     result
+  #   else
+  #     self.to_enum :my_map
+  #   end
+  # end
+
+  # my_map with proc / or block
+
+  def my_map (proc=nil)
     result = []
-    if block_given?
-      self.my_each do |i|
-        value = yield i
-        result << value
-      end
-      result
-    else
-      self.to_enum :my_map
+    my_each do |i|
+      result << (proc ? proc.call(i) : yield(i))
     end
+    result
   end
 
   def my_inject (*args)
