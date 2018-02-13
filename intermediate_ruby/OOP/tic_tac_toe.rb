@@ -1,24 +1,57 @@
-class Board
+class GameInterface
 
-  attr_reader :board_status
-  
-  def initialize
-    puts "Welcome to WilPoly's tic-tac-toe"
-      create_player(player_1)
-      create_player(player_2)
-    draw_board
-    puts "Your move #{player_1}"
+  @@player_count = 0
+  @@player_max = 2
+
+  attr_accessor :players
+
+  def initialize(game_name)
+    @players = {}
+    puts "Welcome to WilPoly's #{game_name}"
+    # puts "How many players ?"
+    # number_of_players = gets.chomp.to_i  #check against player_max
+    #raise error if @number_of_players is not 1 or 2
+    player_number = 1
+    while player_number <= @@player_max #number_of_players 
+      create_player(player_number)
+      player_number += 1
+      @@player_count += 1
+    end
+    # puts @@player_count
+    # @players.each { |k, v| puts "#{k} => #{v}" }
+    # p @players
+    # p @players
+    #game_turn
+    @players.each { |k, v| puts "Player #{k}'s name is #{v.name}"} #checking if I can access data inside the hash => sucessful
   end
+
+  # def number_of_players(number)
+  #   until @@player_count == @@player_max
+  #     @number_of_players += 1
+  #   end
+  # end
 
   def create_player(player_number)
     puts "What is your name ?"
     player_name = gets.chomp
-    Player.new(player_name)
+    @players[player_number] = Player.new(player_name)
   end
 
-  def draw_board(m, n)
-    # @board_grid = (1..(m * n)).to_a
-    @board_grid = Array.new(m) { Array.new(n) { " | "} }
+  def draw_board
+    @board = Board.new(m, n)
+  end
+
+  def game_turn
+  end
+
+end
+
+class Board
+
+  attr_reader :board_status
+  
+  def initialize(m, n)
+    @board_grid = Array.new(m) { Array.new(n) {nil} }
     #iteration pour affichage en colonnes...
   end
   
@@ -28,8 +61,9 @@ class Board
 
 end
 
-class Player < Board
-  attr_reader :name, :score
+class Player
+
+  attr_accessor :name, :score
 
   def initialize(name, score=0)
     @name = name
@@ -37,14 +71,26 @@ class Player < Board
   end
 
   def put_mark(location)
+
+  end
+
+  def win
+    @score += 1
   end
 
 end
 
-class Mark < Board
+class Mark
   attr_accessor :type, :player, :position
+
+  def initialize(type, player, position)
+    @type = type
+    @player = player
+    @position = position
+  end
   
   # if player1 => type = "X"
   # if player2 => type = "O"
 end
 
+game = GameInterface.new("Tic-tac-toe")
