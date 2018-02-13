@@ -1,7 +1,7 @@
-class Interface
+class Board
 
-  @@player_count = 0
-
+  attr_reader :board_status
+  
   def initialize
     puts "Welcome to WilPoly's tic-tac-toe"
       create_player(player_1)
@@ -14,22 +14,22 @@ class Interface
     puts "What is your name ?"
     player_name = gets.chomp
     Player.new(player_name)
-    @@player_count += 1
   end
 
-  def draw_board
+  def draw_board(m, n)
+    # @board_grid = (1..(m * n)).to_a
+    @board_grid = Array.new(m) { Array.new(n) { " | "} }
+    #iteration pour affichage en colonnes...
+  end
+  
+  def board_position
+   # @board_status = {board_position :x, etc}
   end
 
 end
 
-class Board
-
-  attr_reader :board_status
-
-end
-
-class Player
-
+class Player < Board
+  attr_reader :name, :score
 
   def initialize(name, score=0)
     @name = name
@@ -42,9 +42,9 @@ class Player
 end
 
 class Mark < Board
-
-  def board_position
-  end
-
+  attr_accessor :type, :player, :position
+  
+  # if player1 => type = "X"
+  # if player2 => type = "O"
 end
 
