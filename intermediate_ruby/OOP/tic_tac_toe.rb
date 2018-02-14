@@ -16,6 +16,7 @@ class GameInterface
       create_player(player_number)
       player_number += 1
       @@player_count += 1
+      puts "\n"
     end
     # puts @@player_count
     # @players.each { |k, v| puts "#{k} => #{v}" }
@@ -37,7 +38,7 @@ class GameInterface
     @players[player_number] = Player.new(player_name)
   end
 
-  def draw_board
+  def create_board
     @board = Board.new(m, n)
   end
 
@@ -51,10 +52,18 @@ class Board
   attr_reader :board_status
   
   def initialize(m, n)
-    @board_grid = Array.new(m) { Array.new(n) {nil} }
+    @board = Array.new(m) { Array.new(n) {0} }
     #iteration pour affichage en colonnes...
   end
   
+  def draw_board
+    @board.each do |i|
+      puts i.join("|")
+    end
+  end
+
+
+
   def board_position
    # @board_status = {board_position :x, etc}
   end
@@ -93,4 +102,6 @@ class Mark
   # if player2 => type = "O"
 end
 
-game = GameInterface.new("Tic-tac-toe")
+#game = GameInterface.new("Tic-tac-toe")
+board = Board.new(3, 3)
+board.draw_board
