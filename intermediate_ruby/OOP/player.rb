@@ -1,3 +1,5 @@
+require './board'
+
 class Player
 
   attr_accessor :name, :score
@@ -8,6 +10,7 @@ class Player
   end
 
   def put_mark(location)
+    location = 
   end
 
   def win
