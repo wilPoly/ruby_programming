@@ -43,6 +43,11 @@ class GameInterface
   def create_board(m, n)
     @board = Board.new(m, n)
   end
+
+  def check_win
+
+  end
+
   
   def game_turn
   end
