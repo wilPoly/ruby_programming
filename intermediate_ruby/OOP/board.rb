@@ -1,3 +1,5 @@
+require './player'
+
 class Board
 
     #protected
@@ -17,19 +19,20 @@ class Board
    # @board_status = {board_position :x, etc}
   end
 
-  def check_rows
+  def check_rows(mark, player)
+    @board.each do |i|
+      if i.all? { |j| j == mark}
+        player.win
+      end
+    end
   end
 
-  def check_columns(mark)
-    win_count = 0
-    b.each_index do |i|
-      b[i].each_index do |j|
-        if (b[i][i] == b[j][i]) == mark
-          win_count += 1
-        else
-          win_count = 0
+  def check_columns(mark, player)
+    @board.each_index do |i|
+      @board[i].each_index do |j|
+        if (@board[i][i] == @board[j][i]) == mark
+          player.win
         end
-        #check for equality 3 times in a row
       end
     end
   end

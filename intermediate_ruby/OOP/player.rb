@@ -2,19 +2,20 @@ require './board'
 
 class Player
 
-  attr_accessor :name, :score
+  attr_accessor :name, :mark, :score
 
-  def initialize(name, score=0)
+  def initialize(name, mark, score=0)
     @name = name
     @score = score
+    @mark = mark
   end
 
   def put_mark(location)
-    location = 
+    
   end
 
   def win
     @score += 1
+    puts "#{player.name} wins !"
   end
-
 end
