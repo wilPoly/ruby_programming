@@ -5,7 +5,7 @@
 require './board'
 require './player'
 
-class GameInterface
+class Engine
 
   @@player_count = 0
   @@player_max = 2
@@ -17,12 +17,7 @@ class GameInterface
 
   def initialize(game_name)
     puts "Welcome to WilPoly's #{game_name}"
-    new_game
-  end
-
-  def new_game
-
-    ### Create players
+    # Create players
     @players = {}
     player_number = 1
     mark = "X"
@@ -41,15 +36,14 @@ class GameInterface
       puts "\n"
     end
 
-    ###Create Board
-    create_board(@@m, @@n)
-    game_turn(1)
+    # Create Board
+    @board = Board.new(@@m, @@n)
+    game_turn
   end
 
   def create_player(player_number, mark)
     puts "What is your name ?"
-    player_name = gets.chomp
-
+    player_name = $stdin.gets.chomp
     #Store player object in the player hash.
     @players[player_number] = Player.new(player_name, mark)
   end
@@ -65,30 +59,35 @@ class GameInterface
     player = @players[player_number]
     mark = @players[player_number].mark
 
-    while player_number <= @@player_count
+    while player_number <= @@player_count # a vérifier
       @board.status(mark, player) 
     end
     return @win_status
   end
 
-  def game_turn(player_number)
-    player = @players[player_number]
-    puts "It's #{player.name}'s turn!"
-    @board.draw_board
-    puts "Which position do you want to mark?"
-    print "> "
-    position = $stdin.gets.chomp
-    player.put_mark(position, player.mark)
-    if check_win(player_number)
-
+  def game_turn
+    player_number = 1
+    while # continue tant qu'il n'y a pas de gagnant ou de match nul
+      player = @players[player_number]
+      puts "It's #{player.name}'s turn!"
+      @board.draw_board
+      position = 0
+      @board.put_mark(position, player.mark)
+      player_number += 1
+      # if player_number == 1
+      #   player_number = 2
+      #   redo
+      # else
+      #   player_number = 1
+      #   redo
+      # end
     end
-
   end
 
 end
 
   
-game = GameInterface.new("Tic-tac-toe")
+game = Engine.new("Tic-tac-toe")
 
 # board = Board.new(3, 3)
 # board.draw_board

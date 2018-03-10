@@ -1,5 +1,3 @@
-require './board'
-
 class Player
 
   attr_accessor :name, :mark, :score
