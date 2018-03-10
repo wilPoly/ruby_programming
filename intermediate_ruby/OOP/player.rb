@@ -10,7 +10,7 @@ class Player
     @mark = mark
   end
 
-  def put_mark(location)
+  def put_mark(position, mark)
     
   end
 

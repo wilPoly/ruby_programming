@@ -15,11 +15,18 @@ class Board
     end
   end
 
-  def board_position
-   # @board_status = {board_position :x, etc}
+  # Checks the board status (full => a draw, etc)
+  def status(mark, player)
+    empty?
+    check_rows(mark, player)
+    check_columns(mark, player)
+  end
+
+  def position(position, mark)
   end
 
   def check_rows(mark, player)
+
     @board.each do |i|
       if i.all? { |j| j == mark}
         player.win
@@ -28,6 +35,7 @@ class Board
   end
 
   def check_columns(mark, player)
+
     @board.each_index do |i|
       @board[i].each_index do |j|
         if (@board[i][i] == @board[j][i]) == mark
