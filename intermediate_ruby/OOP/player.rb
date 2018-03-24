@@ -7,9 +7,5 @@ class Player
     @score = score
     @mark = mark
   end
-
-  def win
-    @score += 1
-    puts "#{player.name} wins !"
-  end
+  
 end

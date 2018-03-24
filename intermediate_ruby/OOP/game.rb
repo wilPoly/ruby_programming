@@ -18,9 +18,7 @@ class Engine
     puts "Player 2"
     create_player(2, "O")
     puts "\n"
-    # Create Board
-    @board = Board.new
-    game_turn
+    new_game
   end
 
   def create_player(player_number, mark)
@@ -30,44 +28,40 @@ class Engine
     @players[player_number] = Player.new(player_name, mark) #maybe a Struct?
   end
 
-def game_turn
+  def new_game
+  # Create Board
+    @board = Board.new
+    game_turn
+  end
+
+  def game_turn
     player_number = 1
-    while # continue tant qu'il n'y a pas de gagnant ou de match nul
+    loop do # continue tant qu'il n'y a pas de gagnant ou de match nul
       player = @players[player_number]
       puts "It's #{player.name}'s turn!"
       @board.draw_board
       position = 0
       @board.put_mark(position, player.mark)
-      player_number += 1
-      # if player_number == 1
-      #   player_number = 2
-      #   redo
-      # else
-      #   player_number = 1
-      #   redo
-      # end
+      check_win(player_number)
+      if player_number == 1
+        player_number = 2
+      else
+        player_number = 1
+      end
     end
-  end
-
-  def game
-
   end
 
   def check_win(player_number)
-    @win_status = false
-    #Itérer player_number et checker si win
-    player_number = 1
     player = @players[player_number]
-    mark = @players[player_number].mark
-
-    while player_number <= @@player_count # a vérifier
-      @board.status(mark, player) 
+    row = @board.check_rows(player.mark)
+    column = @board.check_columns(player.mark)
+    diagonal = @board.check_diagonals(player.mark)
+    if row || column || diagonal
+      puts "#{player.name} wins !"
+      player.score += 1
     end
-    return @win_status
+    
   end
-
-
-  
 
 end
 

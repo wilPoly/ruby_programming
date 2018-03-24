@@ -1,0 +1,13 @@
+#Notes
+
+player alternates on a loop
+	=> need loop break
+
+check_rows works
+
+check_columns works somewhat
+
+check_diagonals works
+
+=> check_win, game_turn loop
+
