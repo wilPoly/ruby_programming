@@ -1,17 +1,10 @@
 ## => Tic-Tac-Toe
 ## => https://en.wikipedia.org/wiki/Tic-tac-toe
-## => https://en.wikipedia.org/wiki/M,n,k-game
 
 require './board'
 require './player'
 
 class Engine
-
-  @@player_count = 0
-  @@player_max = 2
-  @@m = 3 #number of rows
-  @@n = 3 #number of columns
-  @@k = 3 #number of marks aligned to win
 
   attr_accessor :players
 
@@ -19,25 +12,14 @@ class Engine
     puts "Welcome to WilPoly's #{game_name}"
     # Create players
     @players = {}
-    player_number = 1
-    mark = "X"
-    while player_number <= @@player_max 
-      puts "Player #{player_number}"
-
-      #Assign marks to players
-      if player_number == 1
-        mark = "X"
-      else
-        mark = "O"
-      end
-      create_player(player_number, mark)
-      player_number += 1
-      @@player_count += 1
-      puts "\n"
-    end
-
+    puts "Player 1"
+    create_player(1, "X")
+    puts "\n"
+    puts "Player 2"
+    create_player(2, "O")
+    puts "\n"
     # Create Board
-    @board = Board.new(@@m, @@n)
+    @board = Board.new
     game_turn
   end
 
@@ -45,27 +27,10 @@ class Engine
     puts "What is your name ?"
     player_name = $stdin.gets.chomp
     #Store player object in the player hash.
-    @players[player_number] = Player.new(player_name, mark)
+    @players[player_number] = Player.new(player_name, mark) #maybe a Struct?
   end
 
-  def create_board(m, n)
-    @board = Board.new(m, n)
-  end
-
-  def check_win(player_number)
-    @win_status = false
-    #Itérer player_number et checker si win
-    player_number = 1
-    player = @players[player_number]
-    mark = @players[player_number].mark
-
-    while player_number <= @@player_count # a vérifier
-      @board.status(mark, player) 
-    end
-    return @win_status
-  end
-
-  def game_turn
+def game_turn
     player_number = 1
     while # continue tant qu'il n'y a pas de gagnant ou de match nul
       player = @players[player_number]
@@ -83,6 +48,26 @@ class Engine
       # end
     end
   end
+
+  def game
+
+  end
+
+  def check_win(player_number)
+    @win_status = false
+    #Itérer player_number et checker si win
+    player_number = 1
+    player = @players[player_number]
+    mark = @players[player_number].mark
+
+    while player_number <= @@player_count # a vérifier
+      @board.status(mark, player) 
+    end
+    return @win_status
+  end
+
+
+  
 
 end
 
