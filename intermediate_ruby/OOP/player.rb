@@ -8,10 +8,6 @@ class Player
     @mark = mark
   end
 
-  def put_mark(position, mark)
-    
-  end
-
   def win
     @score += 1
     puts "#{player.name} wins !"
