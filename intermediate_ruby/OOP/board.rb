@@ -46,6 +46,8 @@ class Board
     end
   end
 
+  # reformat to allow different m,n,k variations
+  # only works if k == m == n
   def check_rows(mark, player)
     @board.each do |i|
       if i.all? { |j| j == mark}
@@ -54,6 +56,8 @@ class Board
     end
   end
 
+  # reformat to allow different m,n,k variations
+  # only works if k == m == new<s
   def check_columns(mark, player)
     @board.each_index do |i|
       @board[i].each_index do |j|
