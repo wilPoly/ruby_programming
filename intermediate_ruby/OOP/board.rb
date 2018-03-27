@@ -37,11 +37,8 @@ class Board
   end
 
   def check_rows(mark)
-    response = "no"
     @board.each do |i|
       if i.all? { |j| j == mark}
-        # player.win
-        #puts "Player wins on row"
         return true
       end
     end
@@ -53,8 +50,6 @@ class Board
     @board.each_index do |i|
       @board[i].each_index do |j|
         if (@board[i][i] == mark) && (@board[j][i] == mark)
-          # player.win
-          # puts "Player wins on column"
           return true
         end
       end
@@ -65,7 +60,6 @@ class Board
     diagonal_1 = @board[0][0] && @board[1][1] && @board[2][2]
     diagonal_2 = @board[0][2] && @board[1][1] && @board[2][0]
     if diagonal_1 == mark || diagonal_2 == mark
-      # puts "Player wins diagonally"
       return true
     end
   end

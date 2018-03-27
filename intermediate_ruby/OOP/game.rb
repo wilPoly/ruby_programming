@@ -56,7 +56,7 @@ class Engine
     row = @board.check_rows(player.mark)
     column = @board.check_columns(player.mark)
     diagonal = @board.check_diagonals(player.mark)
-    if row || column || diagonal
+    if row == true || column == true || diagonal == true
       puts "#{player.name} wins !"
       player.score += 1
     end
