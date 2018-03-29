@@ -11,3 +11,5 @@ check_diagonals works
 
 => check_win, game_turn loop
 
+=> Board#status? : à checker si fonctionne (remanier Engine#check_win)
+
