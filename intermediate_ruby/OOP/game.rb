@@ -6,8 +6,6 @@ require './player'
 
 class Engine
 
-  attr_accessor :players
-
   def initialize
     puts "\n"
     puts "\t\tWelcome to WilPoly's Tic-tac-toe"
@@ -37,7 +35,7 @@ class Engine
 
   def game_turn
     player_number = 1
-    loop do # until # @win == true # manque condition board_full
+    loop do
       player = @players[player_number]
       puts "It's #{player.name}'s turn!"
       @board.draw_board

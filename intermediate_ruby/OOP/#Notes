@@ -13,6 +13,8 @@
 
 		check_win bug => auto win, needs rewriting
 
-Board#status? and Engine#check_win => OK
+		Board#status? and Engine#check_win => OK
 
 Need to check for draw
+
+Minor changes

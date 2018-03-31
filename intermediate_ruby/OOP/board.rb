@@ -48,6 +48,7 @@ class Board
                     :column_3 => [@board[0][2], @board[1][2], @board[2][2]]
                      }
     win = false
+    # => @board.flatten.all? { |i| i == "X" || i == }
     win_condition.each do |_, v|
       if v.all? { |i| i == mark }
         win = true
