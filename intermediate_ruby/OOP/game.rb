@@ -54,6 +54,7 @@ class Engine
     end
   end
 
+<<<<<<< HEAD
   def check_win(player_number)
     player = @players[player_number]
     if @board.status?(player.mark)
@@ -82,6 +83,18 @@ class Engine
         redo
       end
     end
+=======
+#   def check_win(player_number)
+#     player = @players[player_number]
+#     row = @board.check_rows(player.mark)
+#     column = @board.check_columns(player.mark)
+#     diagonal = @board.check_diagonals(player.mark)
+#     if row == true || column == true || diagonal == true
+#       puts "#{player.name} wins !"
+#       player.score += 1
+#     end
+    
+>>>>>>> fd98de1bc2964ad2a8d77c69bba0d92d69c6762c
   end
 
 end

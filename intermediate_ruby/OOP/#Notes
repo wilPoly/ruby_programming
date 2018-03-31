@@ -18,3 +18,5 @@ Board#status? and Engine#check_win => OK
 Need to check for draw
 
 
+=> Board#status? : à checker si fonctionne (remanier Engine#check_win)
+
