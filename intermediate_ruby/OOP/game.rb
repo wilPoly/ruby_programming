@@ -9,7 +9,9 @@ class Engine
   attr_accessor :players
 
   def initialize(game_name)
-    puts "Welcome to WilPoly's #{game_name}"
+    puts "\n"
+    puts "\t\tWelcome to WilPoly's #{game_name}"
+    puts "\n"
     # Create players
     @players = {}
     puts "Player 1"
@@ -29,14 +31,15 @@ class Engine
   end
 
   def new_game
-  # Create Board
+    # @win = false
+    # Create Board
     @board = Board.new
     game_turn
   end
 
   def game_turn
     player_number = 1
-    loop do # continue tant qu'il n'y a pas de gagnant ou de match nul
+    loop do # until # @win == true # manque condition board_full
       player = @players[player_number]
       puts "It's #{player.name}'s turn!"
       @board.draw_board
@@ -53,14 +56,32 @@ class Engine
 
   def check_win(player_number)
     player = @players[player_number]
-    row = @board.check_rows(player.mark)
-    column = @board.check_columns(player.mark)
-    diagonal = @board.check_diagonals(player.mark)
-    if row || column || diagonal
+    if @board.status?(player.mark)
       puts "#{player.name} wins !"
+      @board.draw_board
       player.score += 1
+      puts "#{@players[1].name}: #{@players[1].score} | #{@players[2].name}: #{@players[2].score}\n"
+      end_game
     end
-    
+  end
+
+  def end_game
+    response = false
+    until response == true
+      puts "Would you like to play again? Y/N"
+      print "> "
+      answer = $stdin.gets.chomp.downcase
+      puts "\n"
+      if answer.include?("y")
+        new_game
+        response = true
+      elsif answer.include?("n")
+        exit(0)
+      else
+        puts "What ?"
+        redo
+      end
+    end
   end
 
 end

@@ -1,13 +1,20 @@
 #Notes
 
-player alternates on a loop
-	=> need loop break
+		player alternates on a loop
+			=> need loop break
 
-check_rows works
+		check_rows works
 
-check_columns works somewhat
+		check_columns works somewhat
 
-check_diagonals works
+		check_diagonals works
 
-=> check_win, game_turn loop
+		=> check_win, game_turn loop
+
+		check_win bug => auto win, needs rewriting
+
+Board#status? and Engine#check_win => OK
+
+Need to check for draw
+
 
