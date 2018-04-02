@@ -1,15 +1,15 @@
 #Notes
 
-###[Source](https://en.wikipedia.org/wiki/Mastermind_(board_game))
+#### [Source](https://en.wikipedia.org/wiki/Mastermind_(board_game))
 
-###[5-move AI - D.E. Knuth algorithm](http://www.cs.uni.edu/~wallingf/teaching/cs3530/resources/knuth-mastermind.pdf)
+#### [5-move AI - D.E. Knuth algorithm](http://www.cs.uni.edu/~wallingf/teaching/cs3530/resources/knuth-mastermind.pdf)
 
-###Elements:
+#### Elements:
 -decoding board
 -6 code pegs (1..6)
 -key pegs (white => right color, wrong place and black => right color, right place)
 
-###2 players :
+#### 2 players :
 -codemaker
 -codebreaker
 
@@ -20,7 +20,7 @@ An extra point is earned by the codemaker if the codebreaker doesn't guess the p
 
 ----
 
-###Player is codebreaker
+#### Player is codebreaker / computer is codemaker
 
 Board
 	-shielded 6 color code => randomly generated
@@ -37,7 +37,7 @@ Engine
 	-loops turns until success or end of 12 turns
 	-asks if player wants to player another game
 
-###Progress
+### Progress
 class Engine => game_turn input guess
 class Board => gen_code in private
 
