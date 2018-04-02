@@ -42,6 +42,7 @@ class Engine
       position = 0
       @board.put_mark(position, player.mark)
       check_win(player_number)
+      check_draw
       if player_number == 1
         player_number = 2
       else
@@ -52,11 +53,18 @@ class Engine
 
   def check_win(player_number)
     player = @players[player_number]
-    if @board.status?(player.mark)
+    if @board.win?(player.mark)
       puts "#{player.name} wins !"
       @board.draw_board
       player.score += 1
       puts "#{@players[1].name}: #{@players[1].score} | #{@players[2].name}: #{@players[2].score}\n"
+      end_game
+    end
+  end
+
+  def check_draw
+    if @board.draw?
+      puts "Draw !"
       end_game
     end
   end

@@ -36,7 +36,7 @@ class Board
     end
   end
 
-  def status?(mark)
+  def win?(mark)
     win_condition = {
                     :diagonal_1 => [@board[0][0], @board[1][1], @board[2][2]],
                     :diagonal_2 => [@board[0][2], @board[1][1],@board[2][0]],
@@ -56,6 +56,10 @@ class Board
       end
     end
     return win
+  end
+
+  def draw?
+    draw = @board.flatten.all? { |i| (i == "X") || (i == "O") }
   end
 
 end
