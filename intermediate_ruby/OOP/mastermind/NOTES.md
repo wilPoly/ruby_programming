@@ -20,9 +20,11 @@ An extra point is earned by the codemaker if the codebreaker doesn't guess the p
 
 ----
 
+###Player is codebreaker
+
 Board
-	-shielded code
-	-6 slots => code guessing (6 color combinations)
+	-shielded 6 color code => randomly generated
+	-4 slots => code guessing (6 color combinations)
 	-4 slots => code clues (**white** => right color, wrong place and **black** => right color, right place)
 
 Players
@@ -31,8 +33,13 @@ Players
 
 Engine
 	-launches the game
+	-displays the board
 	-loops turns until success or end of 12 turns
 	-asks if player wants to player another game
+
+###Progress
+class Engine => game_turn input guess
+class Board => gen_code in private
 
 
 
