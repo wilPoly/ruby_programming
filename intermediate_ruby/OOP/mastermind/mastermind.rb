@@ -17,7 +17,7 @@ class Engine
       print "> "
       response = $stdin.gets.chomp
       # processes the input into an array
-      input = guess_raw.split("").map { |i| i.to_i }
+      input = response.split("").map { |i| i.to_i }
       @board.guess(input)
 
       @turns -= 1
@@ -38,14 +38,23 @@ class Board
 
   def guess(input)
     # compare the guess with @code and outputs the clues
+    clues = []
     # compare the index and the value of the two arrays
     # if the value and the index are equal => black peg
     # if the value is included but the index doesn't match => white peg
-    @code.each_with_index do |i, j|
-      input.each_with_index do |k, v| 
-        ...
+    @code.each_with_index do |code, i|
+      input.each_with_index do |guess, j| 
+        case
+        when code == guess
+          clues << "B"
+        when 
+        else
+        end
+      end
+    end
     # Store the guesses and the associated responses in a hash
     # {[x1, X2, x3, x4] => [y1, y2, y3, y4]}
+    @board[input] = clues
 
   end
 
