@@ -23,7 +23,7 @@ An extra point is earned by the codemaker if the codebreaker doesn't guess the p
 #### Player is codebreaker / computer is codemaker
 
 Board
-	-shielded 6 color code => randomly generated
+	-shielded 4 color code => randomly generated, **each color must be different**
 	-4 slots => code guessing (6 color combinations)
 	-4 slots => code clues (**white** => right color, wrong place and **black** => right color, right place)
 

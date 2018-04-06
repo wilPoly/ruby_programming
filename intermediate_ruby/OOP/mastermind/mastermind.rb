@@ -42,16 +42,6 @@ class Board
     # compare the index and the value of the two arrays
     # if the value and the index are equal => black peg
     # if the value is included but the index doesn't match => white peg
-    @code.each_with_index do |code, i|
-      input.each_with_index do |guess, j| 
-        case
-        when code == guess
-          clues << "B"
-        when 
-        else
-        end
-      end
-    end
     # Store the guesses and the associated responses in a hash
     # {[x1, X2, x3, x4] => [y1, y2, y3, y4]}
     @board[input] = clues
@@ -66,8 +56,8 @@ class Board
   private
 
   def gen_code
-     @code = []
-    # random hidden code generated
+    @code = []
+    # random hidden code generated, repetition permitted
     4.times { @code << rand(1..6) }
   end
 
