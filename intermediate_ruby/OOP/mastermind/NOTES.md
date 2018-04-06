@@ -23,7 +23,7 @@ An extra point is earned by the codemaker if the codebreaker doesn't guess the p
 #### Player is codebreaker / computer is codemaker
 
 Board
-	-shielded 4 color code => randomly generated, **each color must be different**
+	-shielded 4 color code => randomly generated, **repetition is permitted**
 	-4 slots => code guessing (6 color combinations)
 	-4 slots => code clues (**white** => right color, wrong place and **black** => right color, right place)
 
@@ -38,8 +38,8 @@ Engine
 	-asks if player wants to player another game
 
 ### Progress
-class Engine => game_turn input guess
-class Board => gen_code in private
+    class Engine => game_turn input guess
+    class Board => gen_code in private
 
 
 
