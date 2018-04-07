@@ -39,7 +39,8 @@ Engine
 
 ### Progress
     class Engine => game_turn input guess
-    class Board => gen_code in private
-
+		class Board => gen_code in private
+		Board#guess works
+Need end_game, win/lose announcement		
 
 
