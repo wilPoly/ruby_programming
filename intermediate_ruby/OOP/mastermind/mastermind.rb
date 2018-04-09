@@ -7,12 +7,13 @@ class Engine
   end
 
   def new_game
-    
+    # refactor initialize
+    # need option for codebreaker / codemaker
   end
 
   def game_turn
     @turns = 12
-    until @turns == 0 do
+    until turns == 0 do
       puts "You must guess a combination of 4 numbers (1..6)"
       puts "#{@turns} turns left."
       print "> "
@@ -22,10 +23,30 @@ class Engine
       @board.guess(input)
       @turns -= 1
       @board.draw_board
+      you_win if @board.win?
     end
+    game_over
   end
-
+  
+  def game_over
+    puts "You lost !"
+    end_game
+  end
+  
+  def you_win
+    puts "You won in #{12 - @turns}!"
+    end_game
+  end
+  
   def end_game
+    puts "New game? (Y/N)"
+    print "> "
+    answer = $stdin.gets.chomp.downcase
+    if answer.include?("y")
+      new_game
+    else
+      exit(0)
+    end
   end
 end
 
@@ -37,15 +58,9 @@ class Board
   end
 
   def guess(input)
-    # compare the guess with @code and outputs the clues
     clues_temp = {}
     clues = []
     guess = input
-    # compare the index and the value of the two arrays
-    # if the value and the index are equal => black peg
-    # if the value is included but the index doesn't match => white peg
-    # Store the guesses and the associated responses in a hash
-    # {[x1, X2, x3, x4] => [y1, y2, y3, y4]}
     guess.each_with_index do |e, i|
       if @code[i] == e
         clues_temp[i] = "B"
@@ -53,19 +68,23 @@ class Board
         clues_temp[i] = "W"
       end
     end
-
     clues_temp.each { |_, v| clues << v }
     clues = clues.sort
     @board[input] = clues
-
+  end
+  
+  def win?
+    win = false
+    @board.each do |_, clue|
+      win = true if clue.all?("B")
+    end
+    return win
   end
 
   def draw_board
-    @board.each do |k, v|
-      puts "#{k} ---> #{v}"
+    @board.each do |guess, clue|
+      puts "| #{guess.join(" ")} |\t| #{clue.join(" ")} |"
     end
-    # displays the previous turns (x1, x2, x3, x4)
-    # and the corresponding response (y1, y2, y3, y4)
   end
 
   private
