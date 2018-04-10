@@ -39,11 +39,12 @@ Engine
 
 ### Progress
     class Engine => game_turn input guess
-		class Board => gen_code in private
-		Board#guess works
-end_game, win/lose announcement => needs testing!
-Board#win? => to test
+	class Board => gen_code in private
+	Board#guess works
+end_game, win/lose announcement => works
+Board#win? => works
     Reformat board display
+Choose between codebreaker/codemaker
 
 
 

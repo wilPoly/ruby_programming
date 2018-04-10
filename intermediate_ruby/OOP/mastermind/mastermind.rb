@@ -1,35 +1,30 @@
 class Engine
 
   def initialize
-    # create Board
-    @board = Board.new
-    game_turn
+    new_game
   end
 
   def new_game
-    # refactor initialize
     # need option for codebreaker / codemaker
-  end
-
-  def game_turn
-    @turns = 12
-    until turns == 0 do
-      puts "You must guess a combination of 4 numbers (1..6)"
-      puts "#{@turns} turns left."
+    @board = Board.new
+    loop do
+      puts "How do you want to play ?"
+      puts "(1). Codebreaker || (2). Codemaker"
       print "> "
-      response = $stdin.gets.chomp
-      # processes the input into an array
-      input = response.split("").map { |i| i.to_i }
-      @board.guess(input)
-      @turns -= 1
-      @board.draw_board
-      you_win if @board.win?
+      answer = $stdin.gets.chomp.to_i
+      if answer == 1
+        codebreaker
+      elsif answer == 2
+        codemaker
+      else
+        puts "Please choose a playmode ?"
+        redo
+      end
     end
-    game_over
   end
   
   def game_over
-    puts "You lost !"
+    puts "You lose, I win!"
     end_game
   end
   
@@ -48,15 +43,43 @@ class Engine
       exit(0)
     end
   end
+  
+  def codebreaker
+    @board.gen_code
+    @turns = 12
+    until @turns == 0 do
+      puts "Guess a 4 numbers combination (1..6)"
+      puts "#{@turns} turns left."
+      print "> "
+      response = $stdin.gets.chomp
+      input = response.split("").map { |i| i.to_i }
+      @board.guess(input)
+      @turns -= 1
+      @board.draw_board
+      you_win if @board.win?
+    end
+    game_over
+  end
+  
+  def codemaker
+    @turns = 12
+  end
+  
 end
 
 class Board
 
   def initialize
-    gen_code
     @board = {}
   end
 
+  def gen_code
+    @code = []
+    # 4.times { @code << rand(1..6) }
+    # TEST
+    @code = [1, 1, 2, 2]
+  end
+  
   def guess(input)
     clues_temp = {}
     clues = []
@@ -76,7 +99,9 @@ class Board
   def win?
     win = false
     @board.each do |_, clue|
-      win = true if clue.all?("B")
+      if (clue.length == 4) && (clue.all? { |i| i == "B" })
+        win = true
+      end
     end
     return win
   end
@@ -85,14 +110,6 @@ class Board
     @board.each do |guess, clue|
       puts "| #{guess.join(" ")} |\t| #{clue.join(" ")} |"
     end
-  end
-
-  private
-
-  def gen_code
-    @code = []
-    # random hidden code generated, repetition permitted
-    4.times { @code << rand(1..6) }
   end
 end
 
