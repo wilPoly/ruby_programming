@@ -38,13 +38,22 @@ Engine
 	-asks if player wants to player another game
 
 ### Progress
-    class Engine => game_turn input guess
+  class Engine => game_turn input guess
 	class Board => gen_code in private
 	Board#guess works
-end_game, win/lose announcement => works
-Board#win? => works
-    Reformat board display
-Choose between codebreaker/codemaker
+	end_game, win/lose announcement => works
+	Board#win? => works
+  Reformat board display
+	Choose between codebreaker/codemaker
+
+
+### To-do
+codemaker => enter secret code
+loop for 12 turns: 
+	AI => guesses randomly
+	codemaker => answers with clues ("B", "W", "")
+	AI => keeps the digit(s) that match exactly : how? guessing? giving the info?
+
 
 
 
