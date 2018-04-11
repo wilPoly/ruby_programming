@@ -5,7 +5,6 @@ class Engine
   end
 
   def new_game
-    # need option for codebreaker / codemaker
     @board = Board.new
     loop do
       puts "How do you want to play ?"
@@ -75,9 +74,9 @@ class Board
 
   def gen_code
     @code = []
-    # 4.times { @code << rand(1..6) }
+    4.times { @code << rand(1..6) }
     # TEST
-    @code = [1, 1, 2, 2]
+    # @code = [1, 1, 2, 2]
   end
   
   def guess(input)

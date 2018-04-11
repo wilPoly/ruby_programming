@@ -45,7 +45,7 @@ Engine
 	Board#win? => works
   Reformat board display
 	Choose between codebreaker/codemaker
-
+		transcribing Knuth algorithm => test.rb
 
 ### To-do
 codemaker => enter secret code
